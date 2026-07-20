@@ -41,41 +41,46 @@ async function triggerSweep(event: MouseEvent) {
         await nextTick()
     })
 
-    await transition.ready
+    let animation: Animation | undefined
 
-    let animation: Animation
+    try {
+        await transition.ready
 
-    if (nextThemeIsDark) {
-        animation = document.documentElement.animate(
-            {
-                clipPath: collapseClipPath
-            },
-            {
-                duration: TRANSITION_DURATION,
-                easing: TRANSITION_EASING,
-                fill: 'both',
-                pseudoElement: '::view-transition-old(root)'
-            }
-        )
-    } else {
-        animation = document.documentElement.animate(
-            {
-                clipPath: expandClipPath
-            },
-            {
-                duration: TRANSITION_DURATION,
-                easing: TRANSITION_EASING,
-                fill: 'both',
-                pseudoElement: '::view-transition-new(root)'
-            }
-        )
+        if (nextThemeIsDark) {
+            animation = document.documentElement.animate(
+                {
+                    clipPath: collapseClipPath
+                },
+                {
+                    duration: TRANSITION_DURATION,
+                    easing: TRANSITION_EASING,
+                    fill: 'both',
+                    pseudoElement: '::view-transition-old(root)'
+                }
+            )
+        } else {
+            animation = document.documentElement.animate(
+                {
+                    clipPath: expandClipPath
+                },
+                {
+                    duration: TRANSITION_DURATION,
+                    easing: TRANSITION_EASING,
+                    fill: 'both',
+                    pseudoElement: '::view-transition-new(root)'
+                }
+            )
+        }
+
+        await animation.finished.catch(() => undefined)
+        await transition.finished.catch(() => undefined)
+    } finally {
+        animation?.cancel()
+
+        requestAnimationFrame(() => {
+            document.documentElement.classList.remove('theme-transition-to-dark', 'theme-transition-to-light')
+        })
     }
-
-    await animation.finished.catch(() => undefined)
-
-    requestAnimationFrame(() => {
-        document.documentElement.classList.remove('theme-transition-to-dark', 'theme-transition-to-light')
-    })
 }
 
 onMounted(() => {
