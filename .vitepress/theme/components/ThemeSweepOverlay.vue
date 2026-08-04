@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, onMounted } from 'vue'
 import { useData } from 'vitepress'
+import { getThemeTransitionCircle } from '../themeTransition'
 
 const { isDark } = useData()
 const TRANSITION_DURATION = 680
 const TRANSITION_EASING = 'cubic-bezier(0.22, 1, 0.36, 1)'
-
-function getEndRadius(x: number, y: number) {
-    return Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y))
-}
 
 async function triggerSweep(event: MouseEvent) {
     const toggle = (event.target as HTMLElement | null)?.closest('.VPSwitchAppearance') as HTMLElement | null
@@ -18,9 +15,11 @@ async function triggerSweep(event: MouseEvent) {
     event.stopImmediatePropagation()
 
     const rect = toggle.getBoundingClientRect()
-    const x = rect.left + rect.width / 2
-    const y = rect.top + rect.height / 2
-    const endRadius = getEndRadius(x, y)
+    const { x, y, endRadius } = getThemeTransitionCircle(
+        rect,
+        { width: window.innerWidth, height: window.innerHeight },
+        window.devicePixelRatio
+    )
     const expandClipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`]
     const collapseClipPath = [`circle(${endRadius}px at ${x}px ${y}px)`, `circle(0px at ${x}px ${y}px)`]
     const nextThemeIsDark = !isDark.value
