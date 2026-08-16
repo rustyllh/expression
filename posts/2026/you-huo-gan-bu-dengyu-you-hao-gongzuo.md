@@ -2,7 +2,7 @@
 title: '“有活干”不等于有好工作'
 date: 2026-08-15
 category: 一个猜想
-hide: true
+hidden: true
 tags:
   - 就业
   - 青年

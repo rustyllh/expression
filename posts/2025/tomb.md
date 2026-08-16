@@ -2,7 +2,7 @@
 title: '坟'
 date: 2025-04-12
 category: 一个猜想
-hide: false
+hidden: false
 tags:
   - 一个猜想
   - 坟

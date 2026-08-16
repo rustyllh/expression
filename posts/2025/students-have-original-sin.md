@@ -2,7 +2,7 @@
 title: '学生，应该是有原罪的'
 date: 2025-09-19
 category: 一个猜想
-hide: false
+hidden: false
 tags:
   - 一个猜想
   - 学生思维

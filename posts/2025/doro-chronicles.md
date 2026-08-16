@@ -2,7 +2,7 @@
 title: 'doro 编年史'
 date: 2025-06-16
 category: 一个猜想
-hide: false
+hidden: false
 tags:
   - 一个猜想
   - doro

@@ -2,7 +2,7 @@
 title: '婚姻和卖淫有时候很像'
 date: 2025-10-22
 category: 一个猜想
-hide: false
+hidden: false
 tags:
   - 一个猜想
   - 婚姻

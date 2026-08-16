@@ -2,7 +2,7 @@
 title: 'Maybe Not Today'
 date: 2026-08-16
 category: 随笔
-hide: false
+hidden: false
 tags:
   - 坚持
   - 竞技
