@@ -1,13 +1,13 @@
 ---
 title: 'Maybe Not Today'
 date: 2026-08-16
-category: 随笔
+category: 一个猜想
 hidden: false
 tags:
   - 坚持
   - 竞技
   - 生活
-description: '我们期待那些不肯停下来的人，并非只为一座冠军，而是为了相信明天仍有不同的可能。'
+description: ''
 ---
 
 # Maybe Not Today
